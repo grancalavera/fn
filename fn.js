@@ -2,9 +2,13 @@ var _ = require('lodash')
 
 function always()   { return true   }
 function never()    { return false  }
+function truthy(value) { return !!value }
 
 function maybe(type, value) {
-    if (type(value)) return value
+    type = type || truthy
+    return function() {
+        if (type(value)) return value
+    }
 }
 
 var number  = _.partial(maybe, _.isNumber)
