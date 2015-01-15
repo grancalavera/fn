@@ -3,6 +3,15 @@ var _ = require('lodash')
 function always()   { return true   }
 function never()    { return false  }
 
+function maybe(type, value) {
+    if (type(value)) return value
+}
+
+var number  = _.partial(maybe, _.isNumber)
+var string  = _.partial(maybe, _.isString)
+var any     = _.partial(maybe, always)
+var none    = _.partial(maybe, never)
+
 function validate(validator, error) {
     error = error || new Error('Boom!')
     return function(value) {
