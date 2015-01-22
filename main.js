@@ -1,1 +1,3 @@
-var fn = require('./fn')()
+var fn = require('./fn')
+,   a = fn.a()
+,   b = fn.b()
